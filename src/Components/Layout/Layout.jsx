@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 import NavbarAfterAuth from "../navbarAfterAuth/NavbarAfterAuth";
 export default function Layout() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   return (
     <>

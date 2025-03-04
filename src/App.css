@@ -1,0 +1,5 @@
+.comment-text {
+  word-break: break-all; /* Breaks long words to prevent overflow */
+  /* OR */
+  overflow-wrap: break-word; /* Breaks only when the word is too long */
+}

@@ -1,21 +1,59 @@
+// Community.jsx
+import { useState } from "react";
+import Post from "./post/post";
+import UploadPost from "./uploadPost/UploadPost";
+
+const initialPosts = [
+  {
+    id: 1,
+    username: "PlantLover123",
+    content: "Just got this beautiful Monstera! 🌿 Anyone have care tips?",
+    hashtag: "#MonsteraMonday",
+    comments: [
+      {
+        id: 1,
+        user: "GreenThumb",
+        text: "Water once a week and bright indirect light!",
+      },
+      { id: 2, user: "LeafyLucy", text: "Stunning! 😍" },
+    ],
+    image: "lovable-uploads/postimg1.png",
+    likes: 42,
+    timestamp: "2024-03-10 09:30",
+  },
+  {
+    id: 2,
+    username: "SucculentFan",
+    content: "My succulent collection is growing! 🌵",
+    hashtag: "#SucculentLove",
+    comments: [
+      { id: 3, user: "CactusKing", text: "Amazing variety!" },
+      { id: 4, user: "PlantNewbie", text: "Where do you get your pots?" },
+    ],
+    image: "lovable-uploads/postimg2.png",
+    likes: 28,
+    timestamp: "2024-03-09 15:45",
+  },
+];
+
 export default function Community() {
-    return(
-        
-        <section id="community" className="bg-[#F7F7F7] py-20">
-            {/* <div className="container mx-auto">
-                <div className="flex items-center justify-between">
-                    <div className="w-1/2">
-                        <img src={community} alt="Community" />
-                    </div>
-                    <div className="w-1/2">
-                        <h2 className="text-4xl font-bold text-black">Join Our Community</h2>
-                        <p className="text-lg text-gray-500 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor. Donec sit amet semper nisl. Nullam et felis nec velit luctus ultricies.</p>
-                        <div className="mt-6">
-                            <button className="bg-[#2E5B41] text-white font-bold px-6 py-2 rounded-full">Join Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-        </section>
-    )
+  const [posts, setPosts] = useState(initialPosts);
+
+  const handleNewPost = (newPost) => {
+    setPosts([newPost, ...posts]);
+  };
+
+  return (
+    <div className="py-20 h-auto mt-24">
+      <section className="container mx-auto flex justify-center">
+        <UploadPost onCreatePost={handleNewPost} />
+      </section>
+
+      <section className="container mx-auto flex flex-col items-center gap-8">
+        {posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
+      </section>
+    </div>
+  );
 }
