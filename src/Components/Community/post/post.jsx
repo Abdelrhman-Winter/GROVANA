@@ -25,9 +25,9 @@ const Post = ({ post }) => {
   };
 
   // Function to truncate text if it exceeds a certain length
-  const truncateText = (text, maxLength = 75) => {
-    return text.length > maxLength ? `${text.slice(0, maxLength)} /n` : text;
-  };
+  // const truncateText = (text, maxLength = 75) => {
+  //   return text.length > maxLength ? `${text.slice(0, maxLength)} <br/>` : text;
+  // };
 
   return (
     <div className="bg-white rounded-lg p-4 shadow-md mt-10 mx-auto w-full md:w-[600px]">
@@ -58,11 +58,7 @@ const Post = ({ post }) => {
       )}
       <p className="text-gray-800 mb-2 whitespace-pre-line break-words">
         {/* Render truncated text safely */}
-        <span
-          dangerouslySetInnerHTML={{
-            __html: truncateText(post.content, 75),
-          }}
-        />
+        {post.content}
         {post.hashtag && (
           <span className="text-green-600 cursor-pointer"> {post.hashtag}</span>
         )}
@@ -96,7 +92,10 @@ const Post = ({ post }) => {
         <div className="max-h-[300px] text-ellipsis mb-4 overflow-hidden">
           {/* Display comments */}
           {comments.map((comment) => (
-            <div key={comment.id} className="flex items-start mb-3 last:mb-0">
+            <div
+              key={comment.id}
+              className="flex items-start mb-3 last:mb-0 whitespace-pre-line break-words"
+            >
               <img
                 src="lovable-uploads/profile.png"
                 alt="User"
